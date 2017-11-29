@@ -517,6 +517,18 @@ set(draco_metadata_dec_sources
     "${draco_src_root}/metadata/metadata_decoder.cc"
     "${draco_src_root}/metadata/metadata_decoder.h")
 
+set(draco_animation_sources
+    "${draco_src_root}/animation/keyframe_animation.cc"
+    "${draco_src_root}/animation/keyframe_animation.h")
+
+set(draco_animation_enc_sources
+    "${draco_src_root}/animation/keyframe_animation_encoder.cc"
+    "${draco_src_root}/animation/keyframe_animation_encoder.h")
+
+set(draco_animation_dec_sources
+    "${draco_src_root}/animation/keyframe_animation_decoder.cc"
+    "${draco_src_root}/animation/keyframe_animation_decoder.h")
+
 set(draco_js_dec_sources
     "${draco_src_root}/javascript/emscripten/decoder_webidl_wrapper.cc"
     "${draco_src_root}/javascript/emscripten/draco_decoder_glue_wrapper.cc")
@@ -557,6 +569,8 @@ set(draco_test_sources
     "${draco_src_root}/mesh/triangle_soup_mesh_builder_test.cc"
     "${draco_src_root}/metadata/metadata_encoder_test.cc"
     "${draco_src_root}/metadata/metadata_test.cc"
+    "${draco_src_root}/animation/keyframe_animation_test.cc"
+    "${draco_src_root}/animation/keyframe_animation_encoding_test.cc"
     "${draco_src_root}/point_cloud/point_cloud_builder_test.cc"
     "${draco_src_root}/point_cloud/point_cloud_test.cc")
 
@@ -742,6 +756,9 @@ else ()
   add_library(draco_metadata_dec OBJECT ${draco_metadata_dec_sources})
   add_library(draco_metadata_enc OBJECT ${draco_metadata_enc_sources})
   add_library(draco_metadata OBJECT ${draco_metadata_sources})
+  add_library(draco_animation_dec OBJECT ${draco_animation_dec_sources})
+  add_library(draco_animation_enc OBJECT ${draco_animation_enc_sources})
+  add_library(draco_animation OBJECT ${draco_animation_sources})
   add_library(draco_point_cloud OBJECT ${draco_point_cloud_sources})
   add_library(draco_points_dec OBJECT
               ${draco_points_common_sources}
@@ -765,6 +782,8 @@ else ()
               $<TARGET_OBJECTS:draco_mesh>
               $<TARGET_OBJECTS:draco_metadata>
               $<TARGET_OBJECTS:draco_metadata_dec>
+              $<TARGET_OBJECTS:draco_animation>
+              $<TARGET_OBJECTS:draco_animation_dec>
               $<TARGET_OBJECTS:draco_point_cloud>
               $<TARGET_OBJECTS:draco_points_dec>)
   add_library(dracoenc
@@ -781,6 +800,8 @@ else ()
               $<TARGET_OBJECTS:draco_mesh>
               $<TARGET_OBJECTS:draco_metadata>
               $<TARGET_OBJECTS:draco_metadata_enc>
+              $<TARGET_OBJECTS:draco_animation>
+              $<TARGET_OBJECTS:draco_animation_enc>
               $<TARGET_OBJECTS:draco_point_cloud>
               $<TARGET_OBJECTS:draco_points_enc>)
   add_library(draco
@@ -805,6 +826,9 @@ else ()
               $<TARGET_OBJECTS:draco_metadata>
               $<TARGET_OBJECTS:draco_metadata_dec>
               $<TARGET_OBJECTS:draco_metadata_enc>
+              $<TARGET_OBJECTS:draco_animation>
+              $<TARGET_OBJECTS:draco_animation_dec>
+              $<TARGET_OBJECTS:draco_animation_enc>
               $<TARGET_OBJECTS:draco_point_cloud>
               $<TARGET_OBJECTS:draco_points_dec>
               $<TARGET_OBJECTS:draco_points_enc>)
